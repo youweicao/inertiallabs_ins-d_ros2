@@ -1,9 +1,11 @@
 Inertiallabs ROS2 Driver
 ===
+# Discarded
+Nov. 2024, inertiallabs officially support ROS2. You can find here [https://github.com/inertiallabs/inertiallabs-ros2-pkgs](https://github.com/inertiallabs/inertiallabs-ros2-pkgs)
 
 # Background
 After consulting the saleperson,  I got there is no official ROS2 driver for inertiallabs ins-d.  
-
+  
 This is NON-OFFICIAL Inertiallabs ROS2 Driver, modified from official ROS1 driver.  
 
 # Main modification
@@ -42,4 +44,3 @@ std::string port = node->declare_parameter<std::string>("ins_url", "serial:/dev/
 Please install imu plugin.
 `sudo apt install ros-humble-rviz-imu-plugin`
 see folder `.doc`
-![INS-D](img_v3_02gb_477e2b30-8244-4a2d-9370-f02b6b15a20g.jpg)
