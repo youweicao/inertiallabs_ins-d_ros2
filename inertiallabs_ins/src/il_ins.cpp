@@ -159,15 +159,12 @@ void publish_device(IL::INSDataStruct *data, il_ins* contextPtr)
 		double roll = data->Roll;
 		double pitch = data->Pitch;
 		double yaw = data->Heading;
-		// for debug 
-		// std::cout<<"("<< roll <<","<< pitch <<","<< yaw << ")"<<std::endl;
+		
 		// change unit
-		roll *= deg_to_rad;
-		pitch *= deg_to_rad;
-		yaw *= deg_to_rad;
-		// for debug
-		// std::cout<<"("<< roll <<","<< pitch <<","<< yaw << ")"<<std::endl;
-		// std::cout<<""<<std::endl;
+		roll = row / 100.0 * deg_to_rad;
+		pitch = pitch / 100.0 * deg_to_rad;
+		yaw = yaw / 100.0 * deg_to_rad;
+
 		// calculate x y z w 
 		double cy = cos(yaw * 0.5);
 		double sy = sin(yaw * 0.5);
@@ -182,14 +179,14 @@ void publish_device(IL::INSDataStruct *data, il_ins* contextPtr)
 		msg_imu.orientation.z = cr * cp * sy - sr * sp * cy;
 
 		// calculate acceleration linear
-		msg_imu.linear_acceleration.x = data->Acc[0] * g;
-		msg_imu.linear_acceleration.y = data->Acc[1] * g;
-		msg_imu.linear_acceleration.z = data->Acc[2] * g;
+		msg_imu.linear_acceleration.x = data->Acc[0] / 4000.0 * g;
+		msg_imu.linear_acceleration.y = data->Acc[1] / 4000.0 * g;
+		msg_imu.linear_acceleration.z = data->Acc[2] / 4000.0 * g;
 
 		// calculate velocity angular 
-		msg_imu.angular_velocity.x = data->Gyro[0] * deg_to_rad;
-		msg_imu.angular_velocity.y = data->Gyro[1] * deg_to_rad;
-		msg_imu.angular_velocity.z = data->Gyro[2] * deg_to_rad;
+		msg_imu.angular_velocity.x = data->Gyro[0] / 50.0 * deg_to_rad;
+		msg_imu.angular_velocity.y = data->Gyro[1] / 50.0 * deg_to_rad;
+		msg_imu.angular_velocity.z = data->Gyro[2] / 50.0 * deg_to_rad;
 
 		context->publishers5->publish(msg_imu);
 	}
