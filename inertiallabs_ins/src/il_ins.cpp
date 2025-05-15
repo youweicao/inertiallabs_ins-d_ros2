@@ -161,7 +161,7 @@ void publish_device(IL::INSDataStruct *data, il_ins* contextPtr)
 		double yaw = data->Heading;
 		
 		// change unit
-		roll = row / 100.0 * deg_to_rad;
+		roll = roll / 100.0 * deg_to_rad;
 		pitch = pitch / 100.0 * deg_to_rad;
 		yaw = yaw / 100.0 * deg_to_rad;
 
